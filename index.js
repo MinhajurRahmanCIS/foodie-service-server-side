@@ -16,12 +16,15 @@ async function run() {
         const serviceCollection = client.db('foodie').collection('services');
         const reviewCollection = client.db('foodie').collection('reviews');
 
+        //Service add
+
         app.post('/services', async (req, res) => {
             const service = req.body;
             const result = await serviceCollection.insertOne(service);
             res.send(result);
         });
 
+        //Service APi
         app.get('/services', async (req, res) => {
             const query = {}
             const cursor = serviceCollection.find(query);
@@ -59,21 +62,21 @@ async function run() {
             res.send(reviews);
         });
 
+        //Review add
+
         app.post('/reviews', async (req, res) => {
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
             res.send(result);
         });
 
+        //Review delete
         app.delete('/reviews/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await reviewCollection.deleteOne(query);
             res.send(result);
         })
-
-
-
     }
     finally {
 
