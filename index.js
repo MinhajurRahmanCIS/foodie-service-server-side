@@ -27,7 +27,7 @@ async function run() {
         //Service APi
         app.get('/services', async (req, res) => {
             const query = {}
-            const cursor = serviceCollection.find(query).sort( { "title": 1 } );
+            const cursor = serviceCollection.find(query).sort( { "price": 1 } );
             const services = await cursor.toArray();
             res.send(services);
         });
@@ -57,7 +57,7 @@ async function run() {
                 }
             }
 
-            const cursor = reviewCollection.find(query);
+            const cursor = reviewCollection.find(query).sort( { "price": 1 } );
             const reviews = await cursor.toArray();
             res.send(reviews);
         });
