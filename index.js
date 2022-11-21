@@ -27,7 +27,7 @@ async function run() {
         //Service APi
         app.get('/services', async (req, res) => {
             const query = {}
-            const cursor = serviceCollection.find(query);
+            const cursor = serviceCollection.find(query).sort( { "title": 1 } );
             const services = await cursor.toArray();
             res.send(services);
         });
